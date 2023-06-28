@@ -1,4 +1,4 @@
-package com.thelumierguy.starfield
+package com.roy.starfield
 
 import android.content.Context
 import android.hardware.Sensor

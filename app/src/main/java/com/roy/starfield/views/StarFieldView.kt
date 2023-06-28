@@ -1,4 +1,4 @@
-package com.thelumierguy.starfield.views
+package com.roy.starfield.views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,8 +7,8 @@ import android.hardware.SensorEvent
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import com.thelumierguy.starfield.utils.ScreenStates
-import com.thelumierguy.starfield.utils.lowPass
+import com.roy.starfield.utils.ScreenStates
+import com.roy.starfield.utils.lowPass
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

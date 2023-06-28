@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.thelumierguy.starfield.views.SpaceShipView
+    <com.roy.starfield.views.SpaceShipView
         android:id="@+id/space_ship"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.thelumierguy.starfield.views.LogoView
+    <com.roy.starfield.views.LogoView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.18" />
 
-    <com.thelumierguy.starfield.views.BlinkingImage
+    <com.roy.starfield.views.BlinkingImage
         android:id="@+id/iv_text"
         android:layout_width="0dp"
         android:layout_height="0dp"

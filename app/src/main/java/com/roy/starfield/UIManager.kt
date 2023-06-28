@@ -1,12 +1,12 @@
-package com.thelumierguy.starfield
+package com.roy.starfield
 
 import android.widget.ImageView
 import androidx.lifecycle.Observer
-import com.thelumierguy.starfield.utils.ScreenStates
-import com.thelumierguy.starfield.views.BlinkingImage
-import com.thelumierguy.starfield.views.LogoView
+import com.roy.starfield.utils.ScreenStates
+import com.roy.starfield.views.BlinkingImage
+import com.roy.starfield.views.LogoView
+import com.thelumierguy.starfield.R
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 fun MainActivity.observeScreenStates() {
     mainViewModel.observeScreenState().observe(this, Observer {

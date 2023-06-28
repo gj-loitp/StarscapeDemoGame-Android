@@ -1,4 +1,4 @@
-package com.thelumierguy.starfield.utils
+package com.roy.starfield.utils
 
 const val ALPHA = 0.05F
 

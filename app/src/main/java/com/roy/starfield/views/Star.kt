@@ -1,4 +1,4 @@
-package com.thelumierguy.starfield.views
+package com.roy.starfield.views
 
 import android.graphics.Canvas
 import android.graphics.Color
