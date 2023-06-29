@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.roy93group.starfield",
+  "variantName": "productionRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 20230628,
+      "versionName": "2023.06.28",
+      "outputFile": "com.roy93group.starfieldrelease_2023.06.28_20230628.apk"
+    }
+  ],
+  "elementType": "File"
+}
