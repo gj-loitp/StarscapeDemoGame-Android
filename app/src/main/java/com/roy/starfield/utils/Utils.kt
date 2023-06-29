@@ -18,3 +18,6 @@ sealed class ScreenStates {
     object GAME_MENU : ScreenStates()
     object START_GAME : ScreenStates()
 }
+
+const val URL_POLICY_NOTION =
+    "https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/"
