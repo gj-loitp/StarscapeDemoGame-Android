@@ -13,7 +13,6 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 class StarFieldView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -32,10 +31,10 @@ class StarFieldView @JvmOverloads constructor(
 
     private val multiplicationFactor = 2F
 
-    var gravityValue = FloatArray(1)
+    private var gravityValue = FloatArray(1)
 
     init {
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
             setLayerType(LAYER_TYPE_HARDWARE, null)
         }
         setBackgroundColor(Color.parseColor("#001122"))
@@ -86,7 +85,7 @@ class StarFieldView @JvmOverloads constructor(
     }
 
     fun processScreenState(screenStates: ScreenStates) {
-         when (screenStates) {
+        when (screenStates) {
             ScreenStates.GAME_MENU -> {
                 if (isAttachedToWindow) {
                     enableTrails = false
@@ -95,14 +94,15 @@ class StarFieldView @JvmOverloads constructor(
                     }
                 }
             }
+
             ScreenStates.START_GAME -> {
                 starsArray.forEach {
                     it.speed = it.defaultSpeed
                 }
             }
-             else -> {}
-         }
+
+            else -> {}
+        }
     }
 }
-
 

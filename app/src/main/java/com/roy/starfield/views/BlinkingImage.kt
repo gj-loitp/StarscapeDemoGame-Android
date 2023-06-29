@@ -10,7 +10,6 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 class BlinkingImage @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -25,7 +24,6 @@ class BlinkingImage @JvmOverloads constructor(
             repeatCount = Animation.INFINITE
         }
     }
-
 
     fun startBlinking() {
         MainScope().launch {

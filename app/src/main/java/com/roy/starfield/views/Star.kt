@@ -7,19 +7,19 @@ import kotlin.random.Random
 
 class Star(private val width: Int, private val height: Int) {
 
-    var x = Random.nextInt(-width, width).toFloat()
-    var y = Random.nextInt(-height, height).toFloat()
-    var z = Random.nextInt(width).toFloat()
+    private var x = Random.nextInt(-width, width).toFloat()
+    private var y = Random.nextInt(-height, height).toFloat()
+    private var z = Random.nextInt(width).toFloat()
 
-    var startingLocation = z
+    private var startingLocation = z
 
     var menuSpeed = 1F
 
     var speed = menuSpeed
     var defaultSpeed = 10F
 
-    var minSpeed = 10F
-    var maxSpeed = 60F
+    private var minSpeed = 10F
+    private var maxSpeed = 60F
 
     private val trailsColor by lazy {
         Color.rgb(
@@ -90,7 +90,7 @@ class Star(private val width: Int, private val height: Int) {
         endRangeMin: Float,
         endRangeMax: Float
     ): Float {
-        return (value - startRangeMin) / (startRangeMax - startRangeMin) * (endRangeMax - endRangeMin) + endRangeMin;
+        return (value - startRangeMin) / (startRangeMax - startRangeMin) * (endRangeMax - endRangeMin) + endRangeMin
     }
 
     fun drawStarWithTrails(canvas: Canvas) {

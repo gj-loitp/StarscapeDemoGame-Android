@@ -13,23 +13,18 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 class SpaceShipView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : View(context, attributeSet, defStyle) {
-
     private var rotationValue = 0F
-
     private val bodyPaint = Paint().apply {
         color = Color.parseColor("#3E4D6C")
     }
-
     private val wingsPaint = Paint().apply {
         color = Color.parseColor("#A7C5CD")
     }
-
     private val wingsPaintOutline = Paint().apply {
         color = Color.parseColor("#3E4D6C")
         style = Paint.Style.STROKE
@@ -37,8 +32,6 @@ class SpaceShipView @JvmOverloads constructor(
         strokeCap = Paint.Cap.ROUND
         strokeJoin = Paint.Join.ROUND
     }
-
-
     private val jetPaint = Paint().apply {
         color = Color.parseColor("#E9924B")
         setShadowLayer(
@@ -47,7 +40,6 @@ class SpaceShipView @JvmOverloads constructor(
             Color.parseColor("#FCF05A")
         )
     }
-
     private val multiplicationFactor = 2F
 
     init {
@@ -56,15 +48,12 @@ class SpaceShipView @JvmOverloads constructor(
 
     private val jetOuterRadius = 36F
     private var jetInnerRadius = 20F
-
     private val halfWidth by lazy { width / 2F }
     private val halfHeight by lazy { height / 2F }
-
     private var gravityValue = FloatArray(1)
 
-
     fun processSensorEvents(sensorEvent: SensorEvent) {
-        lowPass(sensorEvent.values, gravityValue)
+        lowPass(input = sensorEvent.values, output = gravityValue)
         magnifyValue()
         invertGravityValue()
         invalidate()
@@ -79,9 +68,11 @@ class SpaceShipView @JvmOverloads constructor(
             rotationValue < -90 -> {
                 gravityValue[0] += 90F
             }
+
             rotationValue > 90 -> {
                 gravityValue[0] -= 90F
             }
+
             else -> {
             }
         }
@@ -100,7 +91,6 @@ class SpaceShipView @JvmOverloads constructor(
             jetInnerRadius = 20F
         }
     }
-
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -127,7 +117,6 @@ class SpaceShipView @JvmOverloads constructor(
     private fun drawShipAntenna(it: Canvas) {
         it.drawLine(halfWidth, halfHeight, halfWidth, height / 2.6F, wingsPaintOutline)
     }
-
 
     private fun drawShipOutline(canvas: Canvas) {
         val path = Path()

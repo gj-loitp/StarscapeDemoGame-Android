@@ -9,22 +9,17 @@ import androidx.appcompat.widget.AppCompatImageView
 import kotlinx.coroutines.*
 import kotlin.random.Random
 
-
 class LogoView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : AppCompatImageView(context, attributeSet, defStyle) {
-
     private val paintJob: Job = Job()
-
-
     private val starPaint by lazy {
         Paint().apply {
             color = Color.parseColor("#E4962B")
         }
     }
-
     private val logoTwinkles by lazy {
         List(20) {
             LogoTwinkles(measuredHeight, measuredWidth)
@@ -46,7 +41,7 @@ class LogoView @JvmOverloads constructor(
             paintJob.cancelChildren()
             CoroutineScope(paintJob + Dispatchers.Main.immediate).launch {
                 logoTwinkles.forEach {
-                    it.draw(canvas,starPaint)
+                    it.draw(canvas, starPaint)
                 }
                 delay(800)
                 logoTwinkles.forEach {
@@ -64,13 +59,15 @@ class LogoView @JvmOverloads constructor(
         enableTinkling = false
     }
 
-    class LogoTwinkles(private val height: Int, private val width: Int) {
+    class LogoTwinkles(
+        private val height: Int,
+        private val width: Int
+    ) {
 
-        var xCor = width.toFloat()
-        var yCor = height.toFloat()
+        private var xCor = width.toFloat()
+        private var yCor = height.toFloat()
 
-
-        fun draw(canvas: Canvas,starPaint:Paint) {
+        fun draw(canvas: Canvas, starPaint: Paint) {
             canvas.drawCircle(xCor, yCor, 3F, starPaint)
 
         }
