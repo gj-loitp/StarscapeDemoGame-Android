@@ -5,11 +5,11 @@ import com.roy.starfield.ui.MainActivity
 import com.roy.starfield.utils.ScreenStates
 import com.roy.starfield.views.BlinkingImage
 import com.roy.starfield.views.LogoView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.a_main.starFieldView
 
 fun MainActivity.observeScreenStates() {
     viewModel.observeScreenState().observe(this) {
-        starField?.processScreenState(it)
+        starFieldView?.processScreenState(it)
         when (it) {
             ScreenStates.APP_INIT -> {
                 transitionToScene(appInitScene)
@@ -17,14 +17,15 @@ fun MainActivity.observeScreenStates() {
 
             ScreenStates.GAME_MENU -> {
                 transitionToScene(gameMenuScene)
-                gameMenuScene.sceneRoot.findViewById<LogoView>(R.id.imageView)?.enableTinkling =
+                gameMenuScene.sceneRoot.findViewById<LogoView>(R.id.logoView)?.enableTinkling =
                     true
-                gameMenuScene.sceneRoot.findViewById<BlinkingImage>(R.id.iv_text)?.startBlinking()
+                gameMenuScene.sceneRoot.findViewById<BlinkingImage>(R.id.blinkingImage)
+                    ?.startBlinking()
             }
 
             ScreenStates.START_GAME -> {
                 transitionToScene(startGameScene)
-                startGameScene.sceneRoot.findViewById<ImageView>(R.id.iv_pause).setOnClickListener {
+                startGameScene.sceneRoot.findViewById<ImageView>(R.id.ivPause).setOnClickListener {
                     onBackPressed()
                 }
             }

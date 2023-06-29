@@ -19,8 +19,10 @@ import com.roy.starfield.observeScreenStates
 import com.roy.starfield.utils.ScreenStates
 import com.roy.starfield.viewmodels.ViewModel
 import com.roy.starfield.views.SpaceShipView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.scene_game_start.*
+import kotlinx.android.synthetic.main.a_main.flFrame
+import kotlinx.android.synthetic.main.a_main.mRootView
+import kotlinx.android.synthetic.main.a_main.starFieldView
+import kotlinx.android.synthetic.main.view_scene_menu.spaceShipView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,9 +40,9 @@ class MainActivity : AppCompatActivity() {
     val viewModel by lazy {
         ViewModelProvider(this)[ViewModel::class.java]
     }
-    val appInitScene: Scene by lazy { createScene(R.layout.scene_app_init) }
-    val gameMenuScene: Scene by lazy { createScene(R.layout.scene_menu) }
-    val startGameScene: Scene by lazy { createScene(R.layout.scene_game_start) }
+    val appInitScene: Scene by lazy { createScene(R.layout.view_scene_app_init) }
+    val gameMenuScene: Scene by lazy { createScene(R.layout.view_scene_menu) }
+    val startGameScene: Scene by lazy { createScene(R.layout.view_scene_game_start) }
     private val transition: Transition by lazy {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.screen_transitions)
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         goFullScreen()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.a_main)
         addTouchHandler()
         observeScreenStates()
         addAccelerometerListener()
@@ -73,10 +75,10 @@ class MainActivity : AppCompatActivity() {
     private fun addAccelerometerListener() {
         accelerometerManager = AccelerometerManager(this) { sensorEvent ->
             if (viewModel.getCurrentState() == ScreenStates.START_GAME) {
-                startGameScene.sceneRoot.findViewById<SpaceShipView>(R.id.spaceShip)
+                startGameScene.sceneRoot.findViewById<SpaceShipView>(R.id.spaceShipView)
                     ?.processSensorEvents(sensorEvent)
             }
-            starField?.processSensorEvents(sensorEvent)
+            starFieldView?.processSensorEvents(sensorEvent)
         }
         accelerometerManager?.let {
             lifecycle.addObserver(it)
@@ -92,8 +94,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleTouch() {
         when (viewModel.getCurrentState()) {
             ScreenStates.START_GAME -> {
-                spaceShip.boost()
-                starField.setTrails()
+                spaceShipView.boost()
+                starFieldView.setTrails()
             }
 
             ScreenStates.GAME_MENU -> {
@@ -134,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createScene(@LayoutRes layout: Int) =
-        Scene.getSceneForLayout(id_frame as ViewGroup, layout, this)
+        Scene.getSceneForLayout(flFrame as ViewGroup, layout, this)
 
     //TODO fix onBackPressed
     override fun onBackPressed() {

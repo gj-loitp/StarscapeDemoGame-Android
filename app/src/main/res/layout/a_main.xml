@@ -8,15 +8,14 @@
     tools:context=".ui.MainActivity">
 
     <com.roy.starfield.views.StarFieldView
-        android:id="@+id/starField"
+        android:id="@+id/starFieldView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <FrameLayout
-        android:id="@+id/id_frame"
-        android:fitsSystemWindows="true"
+        android:id="@+id/flFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" />
 
 </FrameLayout>

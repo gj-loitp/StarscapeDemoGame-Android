@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.roy.starfield.views.LogoView
-        android:id="@+id/imageView"
+        android:id="@+id/logoView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:src="@drawable/text_star_scape_logo"
@@ -15,8 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.18" />
 
-
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/text_increase_volume"
@@ -24,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/logoView"
         app:layout_constraintWidth_percent="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
