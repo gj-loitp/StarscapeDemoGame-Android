@@ -17,10 +17,29 @@ android {
         versionName "2023.06.28"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword KS_PW
+            keyAlias KS_ALIAS
+            keyPassword KS_PW
+        }
+    }
     buildTypes {
         release {
+            debuggable false
+            minifyEnabled true
+            //used android.enableR8=true in gradle.properties
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+//            applicationIdSuffix ".release"
+        }
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //used android.enableR8=true in gradle.properties
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            applicationIdSuffix ".debug"
         }
     }
     compileOptions {
@@ -31,6 +50,41 @@ android {
         jvmTarget = '11'
     }
     namespace 'com.roy.starfield'
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = defaultConfig.applicationId + buildType.name + "_" + defaultConfig.versionName + "_" + defaultConfig.versionCode + ".apk"
+        }
+    }
+
+    flavorDimensions "type"
+    productFlavors {
+
+        dev {
+//            applicationId = "com.roy.starfield.dev"
+            dimension "type"
+            buildConfigField("String", "FLAVOR_buildEnv", '"dev"')
+            resValue "string", "app_name", "Starscape DEV"
+
+//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
+//            resValue "string", "BANNER", "18a3d1924d3ebee6"
+//            resValue "string", "INTER", "895d5d41cb20edb7"
+//            resValue "string", "EnableAdInter", "false"
+        }
+
+        production {
+//            applicationId = "com.roy.starfield.prod"
+            dimension "type"
+            buildConfigField("String", "FLAVOR_buildEnv", '"prod"')
+            resValue "string", "app_name", "Starscape"
+
+//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
+//            resValue "string", "BANNER", "18a3d1924d3ebee6"
+//            resValue "string", "INTER", "895d5d41cb20edb7"
+//            resValue "string", "EnableAdInter", "true"
+        }
+
+    }
 }
 
 dependencies {
