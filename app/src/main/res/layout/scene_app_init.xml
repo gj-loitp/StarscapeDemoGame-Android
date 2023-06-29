@@ -8,7 +8,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:src="@drawable/star_scape_logo"
+        android:src="@drawable/text_star_scape_logo"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.3"
@@ -19,7 +19,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/increase_volume"
+        android:src="@drawable/text_increase_volume"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
