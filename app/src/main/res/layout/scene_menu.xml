@@ -30,7 +30,7 @@
         app:layout_constraintWidth_percent="0.3" />
 
     <com.roy.starfield.views.SpaceShipView
-        android:id="@+id/space_ship"
+        android:id="@+id/spaceShip"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

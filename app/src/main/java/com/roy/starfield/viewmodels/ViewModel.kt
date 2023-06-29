@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.roy.starfield.utils.ScreenStates
 
-class MainViewModel : ViewModel() {
+class ViewModel : ViewModel() {
 
     private val screenStateLiveData = MutableLiveData<ScreenStates>()
 

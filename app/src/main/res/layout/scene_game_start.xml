@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.roy.starfield.views.SpaceShipView
-        android:id="@+id/space_ship"
+        android:id="@+id/spaceShip"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -8,7 +8,7 @@ import com.roy.starfield.views.LogoView
 import kotlinx.android.synthetic.main.activity_main.*
 
 fun MainActivity.observeScreenStates() {
-    mainViewModel.observeScreenState().observe(this) {
+    viewModel.observeScreenState().observe(this) {
         starField?.processScreenState(it)
         when (it) {
             ScreenStates.APP_INIT -> {
