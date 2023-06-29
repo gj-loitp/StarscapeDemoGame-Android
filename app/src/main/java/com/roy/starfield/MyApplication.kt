@@ -1,17 +1,18 @@
 package com.roy.starfield
 
 import android.app.Application
+//TODO applovin
 
-//TODO permission ad_id
-//TODO ad
 //TODO keystore
 //TODO change icon launcher
 //TODO double to exit app
 //TODO policy
 //TODO rate app, share app, more app
-//TODO proguard
 
 //done
+//permission ad_id
+//leakcanary
+//proguard
 
 class MyApplication : Application() {
     override fun onCreate() {
