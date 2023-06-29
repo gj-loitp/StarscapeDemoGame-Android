@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     val startGameScene: Scene by lazy { createScene(R.layout.view_scene_game_start) }
     private val transition: Transition by lazy {
         TransitionInflater.from(this)
-            .inflateTransition(R.transition.screen_transitions)
+            .inflateTransition(R.transition.anim_screen_transitions)
     }
 
     fun transitionToScene(scene: Scene) {
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.music)
+        mediaPlayer = MediaPlayer.create(this, R.raw.bkg_music)
         mediaPlayer?.setOnPreparedListener {
             it.start()
         }
