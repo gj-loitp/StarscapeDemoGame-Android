@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StarField">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.roy.starfield
+package com.roy.starfield.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

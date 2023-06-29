@@ -1,6 +1,7 @@
 package com.roy.starfield
 
 import android.widget.ImageView
+import com.roy.starfield.ui.MainActivity
 import com.roy.starfield.utils.ScreenStates
 import com.roy.starfield.views.BlinkingImage
 import com.roy.starfield.views.LogoView

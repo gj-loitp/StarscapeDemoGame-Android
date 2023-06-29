@@ -1,4 +1,4 @@
-package com.roy.starfield
+package com.roy.starfield.ui
 
 import android.media.MediaPlayer
 import android.os.Build
@@ -13,7 +13,11 @@ import androidx.transition.Scene
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
+import com.roy.starfield.AccelerometerManager
+import com.roy.starfield.R
+import com.roy.starfield.observeScreenStates
 import com.roy.starfield.utils.ScreenStates
+import com.roy.starfield.viewmodels.MainViewModel
 import com.roy.starfield.views.SpaceShipView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.scene_game_start.*

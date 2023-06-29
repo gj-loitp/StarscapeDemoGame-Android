@@ -9,7 +9,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
-class AccelerometerManager(context: Context, onUpdateCallBack: (SensorEvent) -> Unit) : LifecycleObserver {
+class AccelerometerManager(
+    context: Context,
+    onUpdateCallBack: (SensorEvent) -> Unit
+) :
+    LifecycleObserver {
 
     private val gyroscopeSensor: Sensor by lazy {
         sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
