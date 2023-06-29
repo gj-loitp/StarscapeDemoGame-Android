@@ -1,5 +1,6 @@
 package com.roy.starfield
 
+import android.view.View
 import android.widget.ImageView
 import com.roy.starfield.ui.MainActivity
 import com.roy.starfield.utils.ScreenStates
@@ -21,6 +22,18 @@ fun MainActivity.observeScreenStates() {
                     true
                 gameMenuScene.sceneRoot.findViewById<BlinkingImage>(R.id.blinkingImage)
                     ?.startBlinking()
+                gameMenuScene.sceneRoot.findViewById<View>(R.id.tvRate).setOnClickListener {
+
+                }
+                gameMenuScene.sceneRoot.findViewById<View>(R.id.tvMore).setOnClickListener {
+
+                }
+                gameMenuScene.sceneRoot.findViewById<View>(R.id.tvShare).setOnClickListener {
+
+                }
+                gameMenuScene.sceneRoot.findViewById<View>(R.id.tvPolicy).setOnClickListener {
+
+                }
             }
 
             ScreenStates.START_GAME -> {

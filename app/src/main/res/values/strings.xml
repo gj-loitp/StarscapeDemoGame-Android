@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Starscape</string>
+    <string name="rate_app">𝕽𝖆𝖙𝖊 𝖆𝖕𝖕</string>
+    <string name="more_app">𝕸𝖔𝖗𝖊 𝖆𝖕𝖕𝖘</string>
+    <string name="share_app">𝕾𝖍𝖆𝖗𝖊 𝖆𝖕𝖕𝖘</string>
+    <string name="policy">𝕿𝖊𝖗𝖒 𝖆𝖓𝖉 𝕻𝖔𝖑𝖎𝖈𝖞</string>
 </resources>
