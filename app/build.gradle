@@ -30,7 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    namespace 'com.thelumierguy.starfield'
+    namespace 'com.roy.starfield'
 }
 
 dependencies {

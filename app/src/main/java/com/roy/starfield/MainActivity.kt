@@ -15,7 +15,6 @@ import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
 import com.roy.starfield.utils.ScreenStates
 import com.roy.starfield.views.SpaceShipView
-import com.thelumierguy.starfield.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.scene_game_start.*
 import kotlinx.coroutines.Dispatchers
@@ -80,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 startGameScene.sceneRoot.findViewById<SpaceShipView>(R.id.space_ship)
                     ?.processSensorEvents(sensorEvent)
             }
-            star_field?.processSensorEvents(sensorEvent)
+            starField?.processSensorEvents(sensorEvent)
         }
         accelerometerManager?.let {
             lifecycle.addObserver(it)
@@ -98,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         when (mainViewModel.getCurrentState()) {
             ScreenStates.START_GAME -> {
                 space_ship.boost()
-                star_field.setTrails()
+                starField.setTrails()
             }
             ScreenStates.GAME_MENU -> {
                 pushUIState(ScreenStates.START_GAME)
