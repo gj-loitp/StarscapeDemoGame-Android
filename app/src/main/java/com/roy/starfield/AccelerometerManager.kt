@@ -15,7 +15,7 @@ class AccelerometerManager(
 ) :
     LifecycleObserver {
 
-    private val gyroscopeSensor: Sensor by lazy {
+    private val gyroscopeSensor: Sensor? by lazy {
         sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     }
 

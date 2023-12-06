@@ -32,7 +32,7 @@ class LogoView @JvmOverloads constructor(
             invalidate()
         }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (isInEditMode || !enableTinkling) {
             return

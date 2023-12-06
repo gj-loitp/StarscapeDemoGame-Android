@@ -40,7 +40,7 @@ class StarFieldView @JvmOverloads constructor(
         setBackgroundColor(Color.parseColor("#001122"))
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (isInEditMode) {
             return
