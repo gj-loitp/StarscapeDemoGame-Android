@@ -70,8 +70,8 @@ android {
             resValue("string", "BANNER", "e8d9ed82b7717674")
             resValue("string", "INTER", "959617a0d8001b4a")
 
-            resValue("string", "EnableAdInter", "false")
-            resValue("string", "EnableAdBanner", "false")
+            resValue("string", "EnableAdInter", "true")
+            resValue("string", "EnableAdBanner", "true")
         }
 
         production {
@@ -84,8 +84,8 @@ android {
             resValue("string", "BANNER", "e8d9ed82b7717674")
             resValue("string", "INTER", "959617a0d8001b4a")
 
-            resValue("string", "EnableAdInter", "false")
-            resValue("string", "EnableAdBanner", "false")
+            resValue("string", "EnableAdInter", "true")
+            resValue("string", "EnableAdBanner", "true")
         }
 
     }

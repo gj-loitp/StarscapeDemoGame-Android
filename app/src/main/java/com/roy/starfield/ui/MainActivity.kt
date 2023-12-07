@@ -1,10 +1,14 @@
 package com.roy.starfield.ui
 
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -13,8 +17,17 @@ import androidx.transition.Scene
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
+import com.applovin.mediation.MaxAd
+import com.applovin.mediation.MaxAdListener
+import com.applovin.mediation.MaxError
+import com.applovin.mediation.ads.MaxAdView
+import com.applovin.mediation.ads.MaxInterstitialAd
 import com.roy.starfield.AccelerometerManager
 import com.roy.starfield.R
+import com.roy.starfield.ext.createAdBanner
+import com.roy.starfield.ext.destroyAdBanner
+import com.roy.starfield.ext.e
+import com.roy.starfield.ext.logI
 import com.roy.starfield.observeScreenStates
 import com.roy.starfield.utils.ScreenStates
 import com.roy.starfield.viewmodels.ViewModel
@@ -26,6 +39,9 @@ import kotlinx.android.synthetic.main.view_scene_menu.spaceShipView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
+import kotlin.math.min
+import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
     private val transitionManager: TransitionManager by lazy {
@@ -47,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.anim_screen_transitions)
     }
+    private var adView: MaxAdView? = null
+    private var interstitialAd: MaxInterstitialAd? = null
+    private var retryAttempt = 0
 
     fun transitionToScene(scene: Scene) {
         transitionManager.transitionTo(scene)
@@ -60,6 +79,13 @@ class MainActivity : AppCompatActivity() {
         observeScreenStates()
         addAccelerometerListener()
         initMenu()
+        adView = this@MainActivity.createAdBanner(
+            logTag = MainActivity::class.java.simpleName,
+            bkgColor = Color.TRANSPARENT,
+            viewGroup = findViewById(R.id.flAd),
+            isAdaptiveBanner = true,
+        )
+        createAdInter()
     }
 
     private fun startMusic() {
@@ -92,6 +118,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleTouch() {
+        e("roy93~", "handleTouch ${viewModel.getCurrentState()}")
         when (viewModel.getCurrentState()) {
             ScreenStates.START_GAME -> {
                 spaceShipView.boost()
@@ -99,10 +126,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             ScreenStates.GAME_MENU -> {
-                pushUIState(ScreenStates.START_GAME)
+                showAd {
+                    pushUIState(ScreenStates.START_GAME)
+                }
             }
 
             else -> {
+                e("roy93~", "else")
             }
         }
     }
@@ -157,6 +187,87 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer?.apply {
             stop()
             release()
+        }
+    }
+
+    override fun onDestroy() {
+        findViewById<ViewGroup>(R.id.flAd).destroyAdBanner(adView)
+        super.onDestroy()
+    }
+
+    private fun createAdInter() {
+        val enableAdInter = getString(R.string.EnableAdInter) == "true"
+        if (enableAdInter) {
+            interstitialAd = MaxInterstitialAd(getString(R.string.INTER), this)
+            interstitialAd?.let { ad ->
+                ad.setListener(object : MaxAdListener {
+                    override fun onAdLoaded(p0: MaxAd?) {
+                        logI("onAdLoaded")
+                        retryAttempt = 0
+                    }
+
+                    override fun onAdDisplayed(p0: MaxAd?) {
+                        logI("onAdDisplayed")
+                    }
+
+                    override fun onAdHidden(p0: MaxAd?) {
+                        logI("onAdHidden")
+                        // Interstitial Ad is hidden. Pre-load the next ad
+                        interstitialAd?.loadAd()
+                    }
+
+                    override fun onAdClicked(p0: MaxAd?) {
+                        logI("onAdClicked")
+                    }
+
+                    override fun onAdLoadFailed(p0: String?, p1: MaxError?) {
+                        logI("onAdLoadFailed")
+                        retryAttempt++
+                        val delayMillis =
+                            TimeUnit.SECONDS.toMillis(2.0.pow(min(6, retryAttempt)).toLong())
+
+                        Handler(Looper.getMainLooper()).postDelayed(
+                            {
+                                interstitialAd?.loadAd()
+                            }, delayMillis
+                        )
+                    }
+
+                    override fun onAdDisplayFailed(p0: MaxAd?, p1: MaxError?) {
+                        logI("onAdDisplayFailed")
+                        // Interstitial ad failed to display. We recommend loading the next ad.
+                        interstitialAd?.loadAd()
+                    }
+
+                })
+                ad.setRevenueListener {
+                    logI("onAdDisplayed")
+                }
+
+                // Load the first ad.
+                ad.loadAd()
+            }
+        }
+    }
+
+    private fun showAd(runnable: Runnable? = null) {
+        val enableAdInter = getString(R.string.EnableAdInter) == "true"
+        if (enableAdInter) {
+            if (interstitialAd == null) {
+                runnable?.run()
+            } else {
+                interstitialAd?.let { ad ->
+                    if (ad.isReady) {
+                        ad.showAd()
+                        runnable?.run()
+                    } else {
+                        runnable?.run()
+                    }
+                }
+            }
+        } else {
+            Toast.makeText(this, "Applovin show ad Inter in debug mode", Toast.LENGTH_SHORT).show()
+            runnable?.run()
         }
     }
 }

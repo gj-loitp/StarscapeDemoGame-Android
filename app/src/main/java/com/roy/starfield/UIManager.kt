@@ -2,6 +2,7 @@ package com.roy.starfield
 
 import android.view.View
 import android.widget.ImageView
+import com.applovin.mediation.ads.MaxInterstitialAd
 import com.roy.starfield.ext.moreApp
 import com.roy.starfield.ext.openBrowserPolicy
 import com.roy.starfield.ext.rateApp
