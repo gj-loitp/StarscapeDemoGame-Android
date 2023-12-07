@@ -66,10 +66,12 @@ android {
             buildConfigField("String", "FLAVOR_buildEnv", '"dev"')
             resValue "string", "app_name", "Starscape DEV"
 
-//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
-//            resValue "string", "BANNER", "18a3d1924d3ebee6"
-//            resValue "string", "INTER", "895d5d41cb20edb7"
-//            resValue "string", "EnableAdInter", "false"
+            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
+            resValue("string", "BANNER", "e8d9ed82b7717674")
+            resValue("string", "INTER", "959617a0d8001b4a")
+
+            resValue("string", "EnableAdInter", "false")
+            resValue("string", "EnableAdBanner", "false")
         }
 
         production {
@@ -78,10 +80,12 @@ android {
             buildConfigField("String", "FLAVOR_buildEnv", '"prod"')
             resValue "string", "app_name", "Starscape"
 
-//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
-//            resValue "string", "BANNER", "18a3d1924d3ebee6"
-//            resValue "string", "INTER", "895d5d41cb20edb7"
-//            resValue "string", "EnableAdInter", "true"
+            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
+            resValue("string", "BANNER", "e8d9ed82b7717674")
+            resValue("string", "INTER", "959617a0d8001b4a")
+
+            resValue("string", "EnableAdInter", "false")
+            resValue("string", "EnableAdBanner", "false")
         }
 
     }
@@ -100,5 +104,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+    implementation 'com.applovin:applovin-sdk:11.11.3'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 }
