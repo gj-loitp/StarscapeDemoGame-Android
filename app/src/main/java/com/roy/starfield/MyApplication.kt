@@ -1,6 +1,7 @@
 package com.roy.starfield
 
 import android.app.Application
+import com.roy.starfield.ext.setupApplovinAd
 
 //TODO applovin
 //TODO double to exit app
@@ -17,5 +18,7 @@ import android.app.Application
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
+        this.setupApplovinAd()
     }
 }
